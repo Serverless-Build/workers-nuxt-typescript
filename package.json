@@ -1,0 +1,23 @@
+{
+  "name": "workers-nuxt-typescript",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "^22.22.0 || ^24.11.0 || >=26.0.0" },
+  "scripts": {
+    "dev": "nuxt dev --host 127.0.0.1",
+    "build": "nuxt build",
+    "cf-typegen": "nuxt prepare && wrangler types",
+    "check": "npm run cf-typegen && nuxt typecheck && npm run build && wrangler deploy --dry-run",
+    "bundle": "wrangler deploy --dry-run --outdir .output/worker-bundle",
+    "start": "wrangler dev",
+    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": { "nuxt": "4.5.2", "h3": "1.15.11" },
+  "devDependencies": {
+    "@types/node": "24.7.0",
+    "typescript": "6.0.3",
+    "vue-tsc": "3.3.12",
+    "wrangler": "4.147.0"
+  }
+}
